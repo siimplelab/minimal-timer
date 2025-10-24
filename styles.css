@@ -120,6 +120,9 @@ body {
   padding: clamp(1rem, 4vw, 2rem);
   border-radius: 1rem;
   transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .timer-display:hover {
