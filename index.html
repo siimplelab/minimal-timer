@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ultra-minimal, accurate timer - works offline">
+  <meta name="theme-color" content="#000000">
+  <title>Timer</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<!--
+  MINIMAL TIMER - Features & Shortcuts
+
+  Modes:
+  • Stopwatch (default): counts up from 00:00:00.00
+  • Countdown: tap time to set, alerts when complete
+
+  Keyboard Shortcuts:
+  • Space: Start/Pause
+  • R: Reset
+  • E: Edit time
+  • M: Toggle mode (Stopwatch ↔ Countdown)
+  • F: Fullscreen
+
+  Touch:
+  • Single tap: Start/Pause
+  • Long-press Reset: Confirm reset
+  • Double-tap time: Toggle mode
+
+  Features:
+  • High-precision timing via Web Worker
+  • Auto light/dark theme + manual toggle
+  • Sound/vibration alerts (mute toggle)
+  • PWA installable, works offline
+  • Persists settings & last countdown value
+-->
+<body>
+  <div class="container">
+    <div class="header">
+      <button id="modeToggle" class="mode-toggle" aria-label="Toggle stopwatch or countdown mode">Stopwatch</button>
+      <div class="controls-right">
+        <button id="muteToggle" class="icon-btn" aria-label="Toggle sound and vibration">🔊</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle light or dark theme">☀️</button>
+        <button id="fullscreenToggle" class="icon-btn" aria-label="Toggle fullscreen">⛶</button>
+      </div>
+    </div>
+
+    <div class="timer-wrapper">
+      <div id="timerDisplay" class="timer-display" role="timer" aria-live="off" aria-label="Timer display" tabindex="0">
+        <span class="time-main">00:00:00</span><span class="time-ms">.00</span>
+      </div>
+      <input
+        id="timeEditor"
+        class="time-editor"
+        type="text"
+        pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2}"
+        placeholder="hh:mm:ss.ms"
+        aria-label="Edit time value"
+        autocomplete="off"
+        style="display: none;"
+      />
+      <div id="editHint" class="edit-hint" style="display: none;"></div>
+    </div>
+
+    <div class="button-group">
+      <button id="startPauseBtn" class="btn btn-primary" aria-label="Start or pause timer">Start</button>
+      <button id="resetBtn" class="btn btn-secondary" aria-label="Reset timer">Reset</button>
+    </div>
+
+    <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
